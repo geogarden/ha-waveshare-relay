@@ -130,8 +130,8 @@
       "channel_mode": {
         "name": "Tryb",
         "state": {
-          "Switch": "Przełącznik",
-          "Pulse": "Impuls"
+          "switch": "Przełącznik",
+          "pulse": "Impuls"
         }
       }
     }

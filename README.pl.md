@@ -39,3 +39,5 @@ Pełna dokumentacja techniczna: [README.md](README.md), [sprzęt i połączenie]
 - Dodano język polski oraz polską instrukcję instalacji.
 - Nazwy encji i etykiety trybów korzystają z mechanizmu tłumaczeń Home Assistant.
 - Stan testu ma wartości `idle` / `running`, wyświetlane po polsku jako „Nieaktywny” / „W trakcie”; numer bieżącego kanału pozostaje w atrybucie `aktueller_kanal`.
+
+Wartości stanu selektora trybu są teraz zgodne z zapisanym trybem: `switch` / `pulse` (wcześniej `Switch` / `Pulse`). Dotychczasowe wywołania wyboru opcji z wielką literą są nadal akceptowane. Automatyzacje porównujące stan selektora należy dostosować.

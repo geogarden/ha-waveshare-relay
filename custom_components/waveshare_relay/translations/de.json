@@ -184,8 +184,8 @@
       "channel_mode": {
         "name": "Modus",
         "state": {
-          "Switch": "Schalter",
-          "Pulse": "Impuls"
+          "switch": "Schalter",
+          "pulse": "Impuls"
         }
       }
     }

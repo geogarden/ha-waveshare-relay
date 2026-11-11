@@ -127,8 +127,8 @@ async def test_mode_select_persists_and_is_idempotent():
         select = select_mod.WaveshareChannelModeSelect(coordinator, entry, 0)
     select.hass = hass
 
-    assert select.current_option == "Switch"
-    assert select.options == ["Switch", "Pulse"]
+    assert select.current_option == "switch"
+    assert select.options == ["switch", "pulse"]
 
     await select.async_select_option("Pulse")
     assert entry.options[CONF_CHANNEL_CONFIGS]["0"] == {
@@ -136,7 +136,7 @@ async def test_mode_select_persists_and_is_idempotent():
     }
     await select.async_select_option("Pulse")  # no-op, no rewrite
     assert hass.config_entries.async_update_entry.call_count == 1
-    assert select.current_option == "Pulse"
+    assert select.current_option == "pulse"
 
 
 async def test_options_flow_two_steps():

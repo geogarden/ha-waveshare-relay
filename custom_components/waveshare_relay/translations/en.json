@@ -130,8 +130,8 @@
       "channel_mode": {
         "name": "Mode",
         "state": {
-          "Switch": "Switch",
-          "Pulse": "Pulse"
+          "switch": "Switch",
+          "pulse": "Pulse"
         }
       }
     }
@@ -139,7 +139,7 @@
   "services": {
     "funktionstest_start": {
       "name": "Start function test",
-      "description": "Starts a one-hot function test: every channel is switched on and off in turn. Without a device target all boards run.\n",
+      "description": "Starts a one-hot function test: every channel is switched on and off in turn. Without a device target all boards run.",
       "fields": {
         "laufzeit_s": {
           "name": "Runtime per channel (s)",
@@ -151,17 +151,17 @@
         },
         "einmalig": {
           "name": "Single pass",
-          "description": "If enabled, the test ends after one complete pass. Otherwise it loops until stopped manually.\n"
+          "description": "If enabled, the test ends after one complete pass. Otherwise it loops until stopped manually."
         },
         "device_id": {
           "name": "Device",
-          "description": "Board the test runs on. Leave empty for all boards. Manual switch commands are blocked while the test runs.\n"
+          "description": "Board the test runs on. Leave empty for all boards. Manual switch commands are blocked while the test runs."
         }
       }
     },
     "funktionstest_stop": {
       "name": "Stop function test",
-      "description": "Stops a running function test and switches all relays off. Without a device target on all boards.\n",
+      "description": "Stops a running function test and switches all relays off. Without a device target on all boards.",
       "fields": {
         "device_id": {
           "name": "Device",
@@ -171,7 +171,7 @@
     },
     "statistik_zuruecksetzen": {
       "name": "Reset statistics",
-      "description": "Resets all counters and duration values to 0. Without a device target on all boards.\n",
+      "description": "Resets all counters and duration values to 0. Without a device target on all boards.",
       "fields": {
         "device_id": {
           "name": "Device",
@@ -181,7 +181,7 @@
     },
     "alle_aus": {
       "name": "All relays off",
-      "description": "Switches all relays off immediately. Without a device target on all boards. Stays available during a function test (safety stop).\n",
+      "description": "Switches all relays off immediately. Without a device target on all boards. Stays available during a function test (safety stop).",
       "fields": {
         "device_id": {
           "name": "Device",

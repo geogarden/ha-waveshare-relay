@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - custom_components/waveshare_relay/manifest.json
+      - custom_components/**
+      - .github/workflows/release.yml
   workflow_dispatch:
 
 permissions:
@@ -21,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install homeassistant pytest pytest-asyncio
-          python -m pip install "$(python -c 'import json; from importlib.resources import files; print(json.loads(files("homeassistant.components.modbus").joinpath("manifest.json").read_text())["requirements"][0])')"
+          python -m pip install "$(python -c 'import json; from importlib.resources import files; print(json.loads(files("homeassistant").joinpath("components/modbus/manifest.json").read_text())["requirements"][0])')"
       - name: Run tests
         run: pytest -v
       - name: Package and publish

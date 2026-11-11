@@ -6,3 +6,5 @@
 - Stan testu działania ma teraz stabilne wartości `idle` / `running`; numer kanału pozostaje w atrybucie `aktueller_kanal`. Automatyzacje porównujące poprzedni niemiecki tekst stanu należy dostosować.
 
 Po aktualizacji uruchom ponownie Home Assistant. Aby zobaczyć polskie tłumaczenia, ustaw język polski w profilu użytkownika. Nazwy encji zmienione ręcznie pozostają bez zmian.
+
+Wartości stanu selektora trybu są teraz zgodne z zapisanym trybem: `switch` / `pulse` (wcześniej `Switch` / `Pulse`). Dotychczasowe wywołania wyboru opcji z wielką literą są nadal akceptowane. Automatyzacje porównujące stan selektora należy dostosować.

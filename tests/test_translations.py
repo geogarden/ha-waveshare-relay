@@ -17,7 +17,7 @@ def leaves(value, prefix=''):
     if isinstance(value, dict):
         return {path: text for key, item in value.items()
                 for path, text in leaves(item, f'{prefix}.{key}').items()}
-    assert isinstance(value, str) and value.strip(), prefix
+    assert isinstance(value, str) and value.strip() and value == value.strip(), prefix
     return {prefix: value}
 
 
@@ -33,6 +33,14 @@ def test_polish_translation_matches_canonical_keys_and_placeholders():
 def test_english_fallback_matches_canonical_strings():
     assert json.loads((COMPONENT / 'strings.json').read_text()) == json.loads(
         (COMPONENT / 'translations/en.json').read_text())
+
+
+def test_entity_state_keys_follow_home_assistant_translation_format():
+    data = json.loads((COMPONENT / 'strings.json').read_text())
+    for entities in data['entity'].values():
+        for value in entities.values():
+            for state in value.get('state', {}):
+                assert re.fullmatch(r'[a-z0-9]+(?:[_-][a-z0-9]+)*', state)
 
 
 def test_polish_channel_names_keep_identity_and_live_renames():

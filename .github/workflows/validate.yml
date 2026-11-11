@@ -20,6 +20,9 @@ jobs:
         uses: hacs/action@main
         with:
           category: integration
+          # This fork is installed as a custom repository. These checks apply
+          # to submitting it to the default HACS catalog, not installation.
+          ignore: issues topics
 
   hassfest:
     name: Hassfest

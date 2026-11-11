@@ -26,8 +26,8 @@ _LOGGER = logging.getLogger(__name__)
 
 # Display labels -> canonical mode (stored value stays switch/pulse)
 MODE_LABELS = {
-    "Switch": ChannelMode.SWITCH,
-    "Pulse": ChannelMode.PULSE,
+    "switch": ChannelMode.SWITCH,
+    "pulse": ChannelMode.PULSE,
 }
 MODE_TO_LABEL = {mode: label for label, mode in MODE_LABELS.items()}
 
@@ -80,7 +80,7 @@ class WaveshareChannelModeSelect(WaveshareChannelEntity, SelectEntity):
 
     async def async_select_option(self, option: str) -> None:
         """Change the mode and persist it in the entry options."""
-        mode = MODE_LABELS[option]
+        mode = MODE_LABELS[option.lower()]
         config = self.coordinator.channel_configs[self._channel]
         if config.mode == mode:
             return
