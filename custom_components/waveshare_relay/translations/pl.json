@@ -1,0 +1,193 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Połącz moduł przekaźników Waveshare PoE",
+        "description": "🔌 Wprowadź dane połączenia z modułem przekaźników.\n\nTest połączenia zostanie wykonany automatycznie.",
+        "data": {
+          "host": "Adres IP",
+          "port": "Port Modbus TCP",
+          "unit_id": "Adres urządzenia Modbus (Unit ID)",
+          "poll_interval": "Odstęp odczytów (sekundy)",
+          "relay_count": "Liczba przekaźników"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie udało się połączyć — sprawdź adres IP, port i adres urządzenia (Unit ID). Moduł obsługuje tylko jedno połączenie Modbus naraz.",
+      "invalid_host": "Wprowadź prawidłowy adres IP."
+    },
+    "abort": {
+      "already_configured": "Ten moduł jest już skonfigurowany."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Konfiguracja przekaźników Waveshare",
+        "description": "Wybierz kanał do edycji. Tryb można zmienić w dowolnym momencie — nazwa i identyfikator encji zostaną zachowane.",
+        "data": {
+          "channel": "Kanał"
+        }
+      },
+      "channel": {
+        "title": "Konfiguracja kanału {channel_number}",
+        "description": "Wybierz tryb kanału. W trybie impulsowym włączenie uruchamia impuls obsługiwany przez moduł; moduł sam wyłącza przekaźnik po upływie ustawionego czasu. Identyfikator encji pozostaje bez zmian.",
+        "data": {
+          "channel_name": "Nazwa wyświetlana",
+          "betriebsart": "Tryb (przełącznik / impuls)",
+          "impulsdauer_ms": "Czas impulsu (ms)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "channel_mode": {
+      "options": {
+        "switch": "Przełącznik",
+        "pulse": "Impuls"
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "test_start": {
+        "name": "Uruchom test działania"
+      },
+      "test_stop": {
+        "name": "Zatrzymaj test działania"
+      },
+      "all_off": {
+        "name": "Wyłącz wszystkie przekaźniki"
+      },
+      "reset_stats": {
+        "name": "Wyzeruj statystyki"
+      }
+    },
+    "binary_sensor": {
+      "connection": {
+        "name": "Połączenie"
+      }
+    },
+    "sensor": {
+      "stat_abfragen_gesamt": {
+        "name": "Odczyty ogółem"
+      },
+      "stat_abfragen_ok": {
+        "name": "Udane odczyty"
+      },
+      "stat_abfragen_fehler": {
+        "name": "Nieudane odczyty"
+      },
+      "stat_letzte_abfrage_ms": {
+        "name": "Czas odpowiedzi"
+      },
+      "stat_schreibvorgaenge_gesamt": {
+        "name": "Zapisy ogółem"
+      },
+      "stat_schreiben_ok": {
+        "name": "Udane zapisy"
+      },
+      "stat_schreiben_fehler": {
+        "name": "Nieudane zapisy"
+      },
+      "stat_letzte_fehlermeldung": {
+        "name": "Ostatni komunikat błędu"
+      },
+      "stat_letzter_fehler_zeit": {
+        "name": "Czas ostatniego błędu"
+      },
+      "stat_letzter_erfolg_zeit": {
+        "name": "Czas ostatniej udanej operacji"
+      },
+      "test_status": {
+        "name": "Test działania",
+        "state": {
+          "idle": "Nieaktywny",
+          "running": "W trakcie"
+        }
+      },
+      "first_seen": {
+        "name": "Pierwsze połączenie"
+      },
+      "duration_ein": {
+        "name": "Czas włączenia"
+      },
+      "duration_aus": {
+        "name": "Czas wyłączenia"
+      },
+      "counter_ein": {
+        "name": "Licznik włączeń"
+      },
+      "counter_aus": {
+        "name": "Licznik wyłączeń"
+      },
+      "counter_fehler": {
+        "name": "Błędy zapisu"
+      }
+    },
+    "select": {
+      "channel_mode": {
+        "name": "Tryb",
+        "state": {
+          "Switch": "Przełącznik",
+          "Pulse": "Impuls"
+        }
+      }
+    }
+  },
+  "services": {
+    "funktionstest_start": {
+      "name": "Uruchom test działania",
+      "description": "Włącza i wyłącza kolejno każdy kanał. Bez wskazania urządzenia test uruchomi się na wszystkich modułach.",
+      "fields": {
+        "laufzeit_s": {
+          "name": "Czas włączenia kanału (s)",
+          "description": "Jak długo każdy przekaźnik pozostaje włączony."
+        },
+        "pause_s": {
+          "name": "Przerwa między kanałami (s)",
+          "description": "Czas oczekiwania po wyłączeniu przekaźnika przed przejściem do następnego kanału."
+        },
+        "einmalig": {
+          "name": "Tylko jeden przebieg",
+          "description": "Po włączeniu test zakończy się po sprawdzeniu wszystkich kanałów. W przeciwnym razie będzie powtarzany do ręcznego zatrzymania."
+        },
+        "device_id": {
+          "name": "Urządzenie",
+          "description": "Moduł, na którym zostanie uruchomiony test. Pozostaw puste, aby wybrać wszystkie moduły. Podczas testu ręczne przełączanie jest zablokowane."
+        }
+      }
+    },
+    "funktionstest_stop": {
+      "name": "Zatrzymaj test działania",
+      "description": "Zatrzymuje trwający test i wyłącza wszystkie przekaźniki. Bez wskazania urządzenia dotyczy wszystkich modułów.",
+      "fields": {
+        "device_id": {
+          "name": "Urządzenie",
+          "description": "Moduł, którego test ma zostać zatrzymany. Pozostaw puste, aby wybrać wszystkie moduły."
+        }
+      }
+    },
+    "statistik_zuruecksetzen": {
+      "name": "Wyzeruj statystyki",
+      "description": "Zeruje wszystkie liczniki i czasy. Bez wskazania urządzenia dotyczy wszystkich modułów.",
+      "fields": {
+        "device_id": {
+          "name": "Urządzenie",
+          "description": "Moduł, którego statystyki mają zostać wyzerowane. Pozostaw puste, aby wybrać wszystkie moduły."
+        }
+      }
+    },
+    "alle_aus": {
+      "name": "Wyłącz wszystkie przekaźniki",
+      "description": "Natychmiast wyłącza wszystkie przekaźniki. Bez wskazania urządzenia dotyczy wszystkich modułów. Działa również podczas testu jako zatrzymanie awaryjne.",
+      "fields": {
+        "device_id": {
+          "name": "Urządzenie",
+          "description": "Moduł, którego przekaźniki mają zostać wyłączone. Pozostaw puste, aby wybrać wszystkie moduły."
+        }
+      }
+    }
+  }
+}

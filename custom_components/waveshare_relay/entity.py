@@ -18,7 +18,7 @@ def device_info(
         name=f"Waveshare Relay ({entry.data.get('host', '?')})",
         manufacturer="Waveshare / ZLAN",
         model=model_name_for_relay_count(coordinator.relay_count),
-        configuration_url="https://github.com/Gr33n93/ha-waveshare-relay",
+        configuration_url="https://github.com/geogarden/ha-waveshare-relay",
     )
 
 
@@ -46,6 +46,14 @@ class WaveshareChannelEntity(
         super().__init__(coordinator)
         self._channel = channel
         self._name_suffix = name_suffix
+        self._attr_translation_key = {
+            "Mode": "channel_mode",
+            "Einschaltdauer": "duration_ein",
+            "Ausschaltdauer": "duration_aus",
+            "EIN-Zähler": "counter_ein",
+            "AUS-Zähler": "counter_aus",
+            "Schreibfehler": "counter_fehler",
+        }.get(name_suffix)
         self._attr_unique_id = unique_id
         self._attr_device_info = device_info(entry, coordinator)
 
@@ -53,4 +61,7 @@ class WaveshareChannelEntity(
     def name(self) -> str | None:
         """Friendly name: channel name plus optional suffix."""
         base = self.coordinator.relay_names[self._channel]
-        return f"{base} {self._name_suffix}" if self._name_suffix else base
+        suffix = self._name_suffix
+        if suffix and self.platform is not None:
+            suffix = super().name or suffix
+        return f"{base} {suffix}" if suffix else base

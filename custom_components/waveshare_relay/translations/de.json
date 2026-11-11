@@ -94,5 +94,100 @@
         }
       }
     }
+  },
+  "selector": {
+    "channel_mode": {
+      "options": {
+        "switch": "Schalter",
+        "pulse": "Impuls"
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "test_start": {
+        "name": "Funktionstest starten"
+      },
+      "test_stop": {
+        "name": "Funktionstest stoppen"
+      },
+      "all_off": {
+        "name": "Alle Relais aus"
+      },
+      "reset_stats": {
+        "name": "Statistik zurücksetzen"
+      }
+    },
+    "binary_sensor": {
+      "connection": {
+        "name": "Verbindung"
+      }
+    },
+    "sensor": {
+      "stat_abfragen_gesamt": {
+        "name": "Abfragen gesamt"
+      },
+      "stat_abfragen_ok": {
+        "name": "Abfragen erfolgreich"
+      },
+      "stat_abfragen_fehler": {
+        "name": "Abfragen fehlgeschlagen"
+      },
+      "stat_letzte_abfrage_ms": {
+        "name": "Reaktionszeit"
+      },
+      "stat_schreibvorgaenge_gesamt": {
+        "name": "Schreibvorgänge gesamt"
+      },
+      "stat_schreiben_ok": {
+        "name": "Schreiben erfolgreich"
+      },
+      "stat_schreiben_fehler": {
+        "name": "Schreiben fehlgeschlagen"
+      },
+      "stat_letzte_fehlermeldung": {
+        "name": "Letzte Fehlermeldung"
+      },
+      "stat_letzter_fehler_zeit": {
+        "name": "Letzter Fehler (Zeit)"
+      },
+      "stat_letzter_erfolg_zeit": {
+        "name": "Letzter Erfolg (Zeit)"
+      },
+      "test_status": {
+        "name": "Funktionstest",
+        "state": {
+          "idle": "Inaktiv",
+          "running": "Läuft"
+        }
+      },
+      "first_seen": {
+        "name": "Erste Verbindung"
+      },
+      "duration_ein": {
+        "name": "Einschaltdauer"
+      },
+      "duration_aus": {
+        "name": "Ausschaltdauer"
+      },
+      "counter_ein": {
+        "name": "EIN-Zähler"
+      },
+      "counter_aus": {
+        "name": "AUS-Zähler"
+      },
+      "counter_fehler": {
+        "name": "Schreibfehler"
+      }
+    },
+    "select": {
+      "channel_mode": {
+        "name": "Modus",
+        "state": {
+          "Switch": "Schalter",
+          "Pulse": "Impuls"
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - custom_components/waveshare_relay/manifest.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install dependencies
+        run: |
+          python -m pip install homeassistant pytest pytest-asyncio
+          python -m pip install "$(python -c 'import json; from importlib.resources import files; print(json.loads(files("homeassistant.components.modbus").joinpath("manifest.json").read_text())["requirements"][0])')"
+      - name: Run tests
+        run: pytest -v
+      - name: Package and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(python -c 'import json; print(json.load(open("custom_components/waveshare_relay/manifest.json"))["version"])')
+          tag="v${version}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            exit 0
+          fi
+          cd custom_components/waveshare_relay
+          zip -r ../../waveshare_relay.zip . -x '*/__pycache__/*' '*.pyc'
+          cd ../..
+          gh release create "$tag" waveshare_relay.zip --target "$GITHUB_SHA" --title "$tag — język polski" --notes-file RELEASE_NOTES.md

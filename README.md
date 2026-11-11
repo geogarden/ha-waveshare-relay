@@ -1,10 +1,10 @@
 # Waveshare Modbus PoE Ethernet Relay
 
-[🇩🇪 Deutsch](README.de.md) | [🇬🇧 English](README.md)
+[🇵🇱 Polski](README.pl.md) | [🇩🇪 Deutsch](README.de.md) | [🇬🇧 English](README.md)
 
-[![HACS Default](https://img.shields.io/badge/HACS-Default-41BDF5?style=for-the-badge)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Gr33n93&repository=ha-waveshare-relay&category=integration)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5?style=for-the-badge)](https://my.home-assistant.io/redirect/hacs_repository/?owner=geogarden&repository=ha-waveshare-relay&category=integration)
 ![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Custom%20Integration-18BCF2?style=for-the-badge)
-![Release](https://img.shields.io/github/v/release/Gr33n93/ha-waveshare-relay?style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/geogarden/ha-waveshare-relay?style=for-the-badge)
 
 Home Assistant integration for Waveshare Modbus PoE Ethernet relay boards.
 Communication runs locally over Modbus TCP.
@@ -37,7 +37,7 @@ Prerequisite: HACS must be installed and configured in Home Assistant.
 
 Use this button to open the integration directly in HACS:
 
-[![Open your Home Assistant instance and open this repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Gr33n93&repository=ha-waveshare-relay&category=integration)
+[![Open your Home Assistant instance and open this repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=geogarden&repository=ha-waveshare-relay&category=integration)
 
 Alternatively, open HACS from the Home Assistant sidebar:
 

@@ -68,7 +68,7 @@ STEP_USER_SCHEMA = vol.Schema(
                     options=[
                         SelectOptionDict(
                             value=str(count),
-                            label=f"{count} Relais – {RELAY_COUNT_MODELS[count]}",
+                            label=f"{count} × {RELAY_COUNT_MODELS[count]}",
                         )
                         for count in SUPPORTED_RELAY_COUNTS
                     ]
@@ -172,11 +172,10 @@ class WaveshareRelayOptionsFlowHandler(config_entries.OptionsFlow):
         coordinator = self.hass.data[DOMAIN][self.config_entry.entry_id]
         choices = []
         for cfg in coordinator.channel_configs:
-            art = "Pulse" if cfg.mode == ChannelMode.PULSE else "Switch"
             choices.append(
                 SelectOptionDict(
                     value=str(cfg.channel),
-                    label=f"Kanal {cfg.channel + 1} – {cfg.name} ({art})",
+                    label=f"{cfg.channel + 1} — {cfg.name}",
                 )
             )
         return self.async_show_form(
@@ -219,9 +218,10 @@ class WaveshareRelayOptionsFlowHandler(config_entries.OptionsFlow):
                     ): SelectSelector(
                         SelectSelectorConfig(
                             options=[
-                                SelectOptionDict(value=MODE_SWITCH, label="Switch"),
-                                SelectOptionDict(value=MODE_PULSE, label="Pulse"),
-                            ]
+                                SelectOptionDict(value=MODE_SWITCH, label=MODE_SWITCH),
+                                SelectOptionDict(value=MODE_PULSE, label=MODE_PULSE),
+                            ],
+                            translation_key="channel_mode"
                         )
                     ),
                     vol.Required(

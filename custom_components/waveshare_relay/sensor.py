@@ -89,7 +89,7 @@ class _BoardSensor(CoordinatorEntity[WaveshareRelayCoordinator], SensorEntity):
     def __init__(self, coordinator, entry, key: str, name: str) -> None:
         super().__init__(coordinator)
         self._attr_unique_id = f"{entry.entry_id}_{key}"
-        self._attr_name = name
+        self._attr_translation_key = key
         self._attr_device_info = device_info(entry, coordinator)
 
 
@@ -122,6 +122,8 @@ class WaveshareTestStatusSensor(_BoardSensor):
     """Function test status sensor."""
 
     _attr_icon = "mdi:test-tube"
+    _attr_device_class = SensorDeviceClass.ENUM
+    _attr_options = ["idle", "running"]
 
     def __init__(self, coordinator, entry) -> None:
         super().__init__(coordinator, entry, "test_status", "Funktionstest")
@@ -129,9 +131,8 @@ class WaveshareTestStatusSensor(_BoardSensor):
     @property
     def native_value(self) -> str:
         if self.coordinator.test_running:
-            ch = self.coordinator.test_current_channel
-            return f"Läuft – Kanal {ch}"
-        return "Inaktiv"
+            return "running"
+        return "idle"
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
